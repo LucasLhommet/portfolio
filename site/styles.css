@@ -8,7 +8,15 @@ body {
     line-height: 1.6;
     scroll-behavior: smooth;
     overflow-x: hidden;
-    background: linear-gradient(to bottom, #333 50%, #222 50%);
+    background: linear-gradient(
+    to top,         /* Direction du dégradé : du bas vers le haut */
+    lightgray 0%,   /* Première couleur (en bas) */
+    lightgray 33%,  /* Lightgray occupe jusqu'à 33% */
+    #cfc1b3 33%,    /* #e0e0e0 commence immédiatement après */
+    #cfc1b3 66%,    /* #e0e0e0 occupe jusqu'à 66% */
+    #333 66%,       /* #333 commence immédiatement après */
+    #333 100%       /* #333 occupe jusqu'en haut */
+);
 }
 
 header {
@@ -84,13 +92,38 @@ section {
 
 #txtProject{
     font-family: 'Poppins', sans-serif;
-    /*opacity: 0; */
     transition: opacity 0.5s ease-in-out; 
     box-sizing: border-box;
     padding-bottom: 100px;
     margin-bottom: 100px;
+    margin-top: 5%;
 }
 
+#orga{
+    display: flex;
+    flex-direction: row;
+    margin-bottom : 10%;
+}
+
+#divTxtInteret{
+    border: 2px solid #333;
+    border-radius: 15%;
+    padding : 2%;
+    margin-right: 10%;
+    max-height: 50%;
+    min-height: 50%;
+    max-width: 40%;
+    min-width: 40%;
+}
+
+#txtInteret{
+    font-family: 'Poppins', sans-serif;
+    transition: opacity 0.5s ease-in-out; 
+    box-sizing: border-box;
+    
+    color: #333;
+    
+}
 
 #projects{
     background-color: #333;
@@ -121,6 +154,13 @@ section {
     font-family: "Pacifico", cursive;
     font-size: 5rem;
 }
+#titleInteret{
+    margin-bottom: 7%;
+    margin-top: 2%;
+    font-family: "Pacifico", cursive;
+    font-size: 5rem;
+    color: #333;
+}
 
 figure{
     margin-left: 1%;
@@ -146,7 +186,7 @@ figcaption{
 
 
 #interet{
-    background-color: #222;
+    background-color: #cfc1b3;
     color: white;
     padding: 50px;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 100px), 0 100%);
@@ -174,15 +214,226 @@ figcaption{
     50% { border-color: transparent; }
   }
   
+
+
   /* Appliquer les animations au texte */
   #typed-title {
-    font-size: 5rem;
+    font-size: 5rem; /* Par défaut pour les grands écrans */
     animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-  }
-  
-  #typed-paragraph {
-    font-size: 1.3rem;
+}
+
+/* Paragraphe */
+#typed-paragraph {
+    font-size: 1.4rem;
     animation: typing 5s steps(60, end), blink-caret 0.75s step-end infinite;
-  }
+}
+
+/* Responsive */
+@media (max-width: 1300px) {
+    #typed-title {
+        font-size: 3.5rem; 
+    }
+    #typed-paragraph {
+        font-size: 1rem;
+    }
+    #presentation{
+        clip-path: polygon(0 0, 100% 0, 100% calc(120% - 100px), 0 100%);
+    }
+}
+
+@media (max-width: 768px) {
+    #typed-title {
+        font-size: 2rem; 
+    }
+    #typed-paragraph {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #typed-title {
+        font-size: 1rem; 
+    }
+    #typed-paragraph {
+        font-size: 0.6rem;
+    }
+}
+
+
+.circle-container {
+    position: relative;
+    width: 400px; /* Taille du cercle global */
+    height: 400px;
+    margin: 0 auto;
+}
+
+/* Style des images dans le cercle */
+.circle-image {
+    position: absolute;
+    width: 80px; /* Taille initiale des icônes */
+    height: 80px;
+    object-fit: cover;
+    transform-origin: center center; /* Centre de rotation */
+    transition: transform 0.3s ease; /* Animation fluide pour le hover */
+}
+
+/* Agrandissement au survol */
+.circle-image:hover {
+    transform: scale(1.2); /* Agrandissement de 20 % */
+}
+
+/* Positionnement en cercle avec des angles */
+.circle-image:nth-child(1) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(0deg) translate(150px) rotate(0deg);
+}
+
+.circle-image:nth-child(2) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(51.43deg) translate(150px) rotate(-51.43deg);
+}
+
+.circle-image:nth-child(3) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(102.86deg) translate(150px) rotate(-102.86deg);
+}
+
+.circle-image:nth-child(4) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(154.29deg) translate(150px) rotate(-154.29deg);
+}
+
+.circle-image:nth-child(5) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(205.71deg) translate(150px) rotate(-205.71deg);
+}
+
+.circle-image:nth-child(6) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(257.14deg) translate(150px) rotate(-257.14deg);
+}
+
+.circle-image:nth-child(7) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(308.57deg) translate(150px) rotate(-308.57deg);
+}
+
+  /* Effet vintage */
+#titleCompetence {
+    color: #6b4226;
+    margin-bottom: 7%;
+    margin-top: 2%;
+    font-family: "Pacifico", cursive;
+    font-size: 5rem;
+}
+
+#Compétence {
+    display: flex;
+    flex-direction: column;
+}
+
+#gd {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10%;
+}
+@media (max-width: 700px) {
+    #gd{
+        justify-content: center;
+        flex-direction: column;
+        margin-left: 20%;
+    }
+}
+/* Mise en page */
+#gauche, #droite {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Style des images */
+.ImgLangage {
+    width: 80px;
+    height: auto;
+    border: 2px solid #6b4226;
+    border-radius: 5px;
+    filter: sepia(80%) contrast(1.2) brightness(0.9);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.ImgLangage:hover {
+    transform: scale(1.1);
+    filter: sepia(100%) contrast(1.5) brightness(1);
+}
+
+/* Texte sous les images */
+.pLangage {
+    font-size: 1rem;
+    color: #333;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+.progress-container {
+    position: relative;
+    width: 50%;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 2%;
+}
+
+/* Barre de progression */
+.progress-bar {
+    height: 100%;
+    width: 0; /* Départ à 0% */
+    background: linear-gradient(90deg, #4caf50, #81c784);
+    border-radius: 20px 0 0 20px;
+    transition: width 1.5s ease-in-out;
+}
+
+/* Texte de progression */
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.gauche{
+    width: 40%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.droite{
+    width: 40%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#divbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 
   
