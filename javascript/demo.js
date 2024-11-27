@@ -45,31 +45,63 @@ style.innerHTML = `
 }`;
 document.head.appendChild(style);
 
-function animateAllProgressBars() {
-    const progressBars = document.querySelectorAll(".progress-bar");
+// Fonction pour animer une barre de progression
+function animateProgressBar(bar) {
+    const percentage = parseInt(bar.getAttribute("data-percentage"));
+    let currentProgress = 0;
 
-    progressBars.forEach((bar) => {
-        const percentage = parseInt(bar.getAttribute("data-percentage")); // Récupérer le pourcentage
-        let currentProgress = 0;
+    const progressText = bar.nextElementSibling;
 
-        const progressText = bar.nextElementSibling; // Sélectionner le texte associé
-
-        // Animation progressive
-        const interval = setInterval(() => {
-            if (currentProgress >= percentage) {
-                clearInterval(interval); // Arrêter l'animation
-            } else {
-                currentProgress++;
-                bar.style.width = currentProgress + "%"; // Mettre à jour la largeur
-                progressText.textContent = currentProgress + "%"; // Mettre à jour le texte
-            }
-        }, 15); // Ajuste la vitesse d'animation
-    });
+    const interval = setInterval(() => {
+        if (currentProgress >= percentage) {
+            clearInterval(interval);
+        } else {
+            currentProgress++;
+            bar.style.width = currentProgress + "%";
+            progressText.textContent = currentProgress + "%";
+        }
+    }, 15);
 }
 
-// Lancer l'animation une fois la page chargée
-document.addEventListener("DOMContentLoaded", animateAllProgressBars);
+// Intersection Observer pour détecter l'entrée dans la vue
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            const bar = entry.target.querySelector(".progress-bar");
+            if (!bar.classList.contains("animated")) {
+                animateProgressBar(bar);
+                bar.classList.add("animated"); // Marquer la barre comme animée
+            }
+        }
+    });
+}, {
+    threshold: 0.5 // L'animation démarre quand 50% de l'élément est visible
+});
 
+document.querySelectorAll('.circle-image').forEach(image => {
+    image.addEventListener('mouseenter', (event) => {
+
+        
+        const imageDisplay = document.getElementById('imageDisplay');
+        
+        // Vérifier si une image existe déjà dans imageDisplay et la supprimer
+        if (imageDisplay.querySelector('img')) {
+            imageDisplay.querySelector('img').remove();
+        }
+
+        // Créer une nouvelle image
+        const newImage = document.createElement('img');
+        newImage.src = event.target.src; // Utilise la source de l'image survolée
+        
+        // Ajouter la nouvelle image dans l'imageDisplay
+        imageDisplay.appendChild(newImage);
+    });
+});
+
+// Observer chaque conteneur de barre de progression
+document.querySelectorAll(".progress-container").forEach((container) => {
+    observer.observe(container);
+});
 
 
 

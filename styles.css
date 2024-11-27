@@ -435,5 +435,47 @@ figcaption{
     align-items: center;
 }
 
+.image-display {
+    position: relative; /* Permet de positionner le conteneur */
+    padding:10%;
+    margin-bottom: 20%;
+    margin-top: 5%;
+    width: 10rem; /* Largeur fixe du cercle */
+    height: 10rem; /* Hauteur fixe pour obtenir un cercle */
+    border: 2px solid #ccc; /* Bordure grise */
+    border-radius: 50%; /* Rend le conteneur circulaire */
+    overflow: hidden; /* Cache l'image qui dépasse du cercle */
+    display: flex; /* Centre le contenu (l'image agrandie) */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    background-color: #f4f4f4; /* Couleur d'arrière-plan neutre */
+}
 
+.image-display img {
+    max-width: 100%; /* Limite la largeur de l'image au conteneur */
+    max-height: 100%; /* Limite la hauteur de l'image au conteneur */
+    object-fit: cover; /* Remplit correctement le cercle */
+}
+
+.interet-image {
+    cursor: pointer; /* Change le curseur pour indiquer que l'image est interactive */
+    transition: transform 0.3s; /* Ajoute une transition fluide pour l'effet de zoom */
+}
+
+.interet-image:hover {
+    transform: scale(1.1); /* Agrandit légèrement l'image au survol */
+}
+
+.indicteur{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5%;
+}
+
+.ind{
+    color : black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+}
   
